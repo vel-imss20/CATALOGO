@@ -715,7 +715,6 @@ body {
     transform: scale(1.1);
 }
 
-
 /* OCULTA BOTONES FLOTANTES DE FONDO CUANDO EL MODAL ESTÁ ABIERTO */
 body.modal-abierto .btn-inst-prev,
 body.modal-abierto .btn-inst-next,
@@ -889,7 +888,6 @@ body.modal-abierto .btn-u3-next {
         font-size: 1rem !important;
     }
 
-    /* Evitar que se queden escalados al presionar en móvil */
     .btn-inst-prev:active, .btn-inst-next:active,
     .btn-gb-prev:active, .btn-gb-next:active,
     .btn-gm-prev:active, .btn-gm-next:active,
@@ -904,7 +902,6 @@ body.modal-abierto .btn-u3-next {
         background-color: #004d40 !important;
     }
 
-    /* CORRECCIÓN DEFINITIVA DE STICKY HOVER/FOCUS EN MÓVIL */
     .btn-inst-prev:hover, .btn-inst-next:hover,
     .btn-gb-prev:hover, .btn-gb-next:hover,
     .btn-gm-prev:hover, .btn-gm-next:hover,
@@ -929,9 +926,7 @@ body.modal-abierto .btn-u3-next {
         background-color: rgba(0, 101, 86, 0.9) !important;
     }
 
-    /* ======================================================== */
-    /* AJUSTE VERTICAL DEL MODAL MÓVIL (MENSAJE -> BOTONES -> CONTADOR) */
-    /* ======================================================== */
+    /* AJUSTE VERTICAL DEL MODAL MÓVIL */
     .guia-modal {
         bottom: 15px !important;
         font-size: 0.78rem !important;
@@ -1068,7 +1063,7 @@ body.modal-abierto .btn-u3-next {
     transform: translate(-50%, -50%); 
     width: 100%; 
     height: 100vh; 
-    object-fit: contain !important; /* Muestra el video completo sin recortes en PC y Móvil */
+    object-fit: contain !important; 
     z-index: 2; 
     pointer-events: none; 
 }
@@ -1099,7 +1094,7 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo base de respaldo */
+    background-color: rgba(0, 0, 0, 0.85); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1109,4 +1104,73 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+/* ======================================================== */
+/* PROPUESTA VISUAL LIMPIA: SOLO TÍTULO, PRECIO Y BOTÓN     */
+/* ======================================================== */
+#seccion-ataudes .tarjeta p:not(.info-asesoria),
+#seccion-ataudes .tarjeta .info-asesoria,
+#seccion-urnas .tarjeta p:not(.info-asesoria),
+#seccion-urnas .tarjeta .info-asesoria {
+    display: none !important;
+}
+
+#seccion-ataudes .tarjeta,
+#seccion-urnas .tarjeta {
+    min-height: 380px !important;
+    padding: 22px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 14px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+#seccion-ataudes .tarjeta:hover,
+#seccion-urnas .tarjeta:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 10px 25px rgba(0, 101, 86, 0.2) !important;
+}
+
+#seccion-ataudes .tarjeta h3,
+#seccion-urnas .tarjeta h3 {
+    font-size: 1.1rem !important;
+    color: #006556 !important;
+    margin: 12px 0 15px 0 !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+#seccion-ataudes .carrusel-tarjeta,
+#seccion-urnas .carrusel-tarjeta {
+    height: 200px !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    background: #f8f9fa !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+#seccion-ataudes .tarjeta .btn-accion,
+#seccion-urnas .tarjeta .btn-accion {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 15px !important;
+    background-color: #006556 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    font-weight: bold !important;
+    font-size: 0.95rem !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(0, 101, 86, 0.25) !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+#seccion-ataudes .tarjeta .btn-accion:hover,
+#seccion-urnas .tarjeta .btn-accion:hover {
+    background-color: #004d40 !important;
+    transform: scale(1.02) !important;
 }

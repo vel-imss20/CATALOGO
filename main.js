@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 2. FILTROS POR CATEGORÍA
-    function configurarFiltros(selectorBotones, selectorTarjetas) {
+        // 2. FILTROS POR CATEGORÍA
+    function configurarFiltros(selectorBotones, selectorTarjetas, alAplicar) {
         const botones = document.querySelectorAll(selectorBotones);
         const tarjetas = document.querySelectorAll(selectorTarjetas);
 
@@ -84,12 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             tarjeta.style.display = 'none';
                         }
                     });
+
+                    if (typeof alAplicar === 'function') alAplicar();
                 });
             });
         }
     }
 
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
+
+    // Aplica el filtro activo de ataúdes al cargar (evita depender del display inline del HTML)
+    const btnAtaudActivo = document.querySelector('.btn-filtro-ataud.activo');
+    if (btnAtaudActivo) btnAtaudActivo.click();
 
     // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
@@ -220,7 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'indicadores-tallasgrandes'
     );
 
-    // 4. LÓGICA DE LOS 3 CARRUSELES DE URNAS
+        // 4. LÓGICA DE LOS 3 CARRUSELES DE URNAS
+    const carruselesUrnas = [];
+
     function inicializarCarruselFilaUrnas(trackId, btnPrevSel, btnNextSel, contenedorIndicadoresId) {
         const track = document.getElementById(trackId);
         const btnPrev = document.querySelector(btnPrevSel);
@@ -229,15 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!track) return;
 
-        const items = track.querySelectorAll('.tarjeta-urna-item');
-        const totalItems = items.length; 
+        const todosLosItems = track.querySelectorAll('.tarjeta-urna-item');
+        const obtenerItems = () => Array.from(todosLosItems).filter(i => i.style.display !== 'none');
         let indiceGrupo = 0;
 
         const obtenerVisibles = () => (window.innerWidth <= 768 ? 1 : 3);
         
         function calcularTotalGrupos() {
             const visibles = obtenerVisibles();
-            return Math.ceil(totalItems / visibles);
+            return Math.max(1, Math.ceil(obtenerItems().length / visibles));
         }
 
         function actualizarPuntos() {
@@ -260,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function actualizarPosicion() {
+            const items = obtenerItems();
             if (items.length === 0) return;
             const visibles = obtenerVisibles();
             const totalGrupos = calcularTotalGrupos();
@@ -292,11 +301,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
         actualizarPuntos();
         actualizarPosicion();
+
+        // Permite reiniciar el carrusel cuando cambia el filtro
+        carruselesUrnas.push({
+            refrescar: () => {
+                indiceGrupo = 0;
+                actualizarPuntos();
+                actualizarPosicion();
+            }
+        });
     }
 
     inicializarCarruselFilaUrnas('track-urnas-1', '.btn-u1-prev', '.btn-u1-next', 'indicadores-urnas-1');
     inicializarCarruselFilaUrnas('track-urnas-2', '.btn-u2-prev', '.btn-u2-next', 'indicadores-urnas-2');
     inicializarCarruselFilaUrnas('track-urnas-3', '.btn-u3-prev', '.btn-u3-next', 'indicadores-urnas-3');
+
+    // 4B. CLASIFICACIÓN Y FILTROS DE URNAS
+    const urnasInfantiles = [1, 4, 6, 9, 14, 18, 21, 22, 23];
+    const urnasEspeciales = [44, 45, 46]; // Sal, Arena, Tierra
+
+    function clasificarUrna(numero) {
+        if (urnasEspeciales.includes(numero)) return 'especial';   // prioridad máxima
+        if (urnasInfantiles.includes(numero)) return 'infantil';   // exclusivas de infantiles
+        if (numero <= 16) return 'basica';
+        if (numero <= 35) return 'media';
+        return 'alta';
+    }
+
+    document.querySelectorAll('#seccion-urnas .tarjeta-urna-item').forEach(item => {
+        const img = item.querySelector('.carrusel-img');
+        const coincidencia = img ? (img.getAttribute('alt') || '').match(/U(\d+)/i) : null;
+        if (coincidencia) {
+            item.setAttribute('data-categoria', clasificarUrna(parseInt(coincidencia[1], 10)));
+        }
+    });
+
+    function actualizarCarruselesUrnas() {
+        // Primero se muestran/ocultan las filas, después se recalcula cada carrusel
+        document.querySelectorAll('#seccion-urnas .contenedor-carrusel-fila').forEach(fila => {
+            const hayVisibles = Array.from(fila.querySelectorAll('.tarjeta-urna-item'))
+                .some(i => i.style.display !== 'none');
+            fila.style.display = hayVisibles ? '' : 'none';
+        });
+        carruselesUrnas.forEach(c => c.refrescar());
+    }
+
+    configurarFiltros('.btn-filtro-urna', '#seccion-urnas .tarjeta-urna-item', actualizarCarruselesUrnas);
 
     // 5. LIGHTBOX / ZOOM DE IMÁGENES Y ARRASTRE MÓVIL/PC RESTAURADO
     const modalLightbox = document.getElementById('modalLightbox');
