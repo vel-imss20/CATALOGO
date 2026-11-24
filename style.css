@@ -806,7 +806,7 @@ body.modal-abierto .btn-u3-next {
 
     .contenido-central {
         padding: 0 20px;
-        margin-bottom: 48px;
+        margin-bottom: 24px;
     }
 
     .contenido-central h1 {
@@ -823,11 +823,11 @@ body.modal-abierto .btn-u3-next {
 
     .controles-video-wrapper {
         position: absolute;
-        top: 50%;
-        bottom: auto;
+        top: auto;
+        bottom: 20px;
         left: 50%;
         right: auto;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         max-width: calc(100% - 32px);
         z-index: 10;
     }
@@ -1230,11 +1230,11 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
 /* ======================================================== */
 .controles-video-wrapper {
     position: absolute;
-    top: 50%;
-    bottom: auto;
+    top: auto;
+    bottom: 28px;
     left: 50%;
     right: auto;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -1405,9 +1405,10 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
 }
 @media (min-width: 769px) {
     .controles-video-wrapper {
-        left: auto !important;
-        right: 36px !important;
-        bottom: 32px !important;
-        transform: none !important;
+        top: auto;
+        bottom: 28px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
     }
 }
