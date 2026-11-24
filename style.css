@@ -1406,9 +1406,9 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
 @media (min-width: 769px) {
     .controles-video-wrapper {
         top: auto;
-        bottom: 28px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
+        bottom: 18px;
+        left: auto;
+        right: 28px;
+        transform: none;
     }
 }
