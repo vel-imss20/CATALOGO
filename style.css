@@ -1191,7 +1191,7 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
 }
 
 /* ======================================================== */
-/* SUBTEXTO DEBAJO DE BOTONES DE VIDEO                      */
+/* ESTILO INSTITUCIONAL IMSS: BOTONES + SUBTEXTO "CONOCENOS" */
 /* ======================================================== */
 .controles-video-wrapper {
     position: fixed;
@@ -1201,21 +1201,138 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
 }
 
 .controles-video-botones {
     display: flex;
-    gap: 15px;
+    gap: 14px;
     align-items: center;
+}
+
+.controles-video-botones button {
+    position: static !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 1.35rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: linear-gradient(145deg, #007a68, #005246) !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(188, 149, 91, 0.75) !important;
+    cursor: pointer !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4) !important;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.controles-video-botones button:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    border-color: #bc955b !important;
+    box-shadow: 0 7px 18px rgba(0, 101, 86, 0.5) !important;
+}
+
+.controles-video-botones button:active {
+    transform: scale(0.97) !important;
 }
 
 .subtexto-controles-video {
     color: #ffffff;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 101, 86, 0.88);
+    border: 1px solid rgba(188, 149, 91, 0.65);
+    padding: 3px 11px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
     user-select: none;
     pointer-events: none;
+}
+
+/* ======================================================== */
+/* VÍNCULO FLOTANTE EN ESQUINA SUPERIOR DERECHA             */
+/* ======================================================== */
+.encuesta-flotante-wrapper {
+    position: fixed;
+    top: 85px;
+    bottom: auto;
+    right: 30px;
+    left: auto;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.circulo-encuesta {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    background: linear-gradient(145deg, #007a68, #005246);
+    border: 2px solid rgba(188, 149, 91, 0.75);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+}
+
+.circulo-encuesta:hover {
+    transform: translateY(-2px) scale(1.05);
+    border-color: #bc955b;
+    box-shadow: 0 7px 18px rgba(0, 101, 86, 0.5);
+}
+
+.circulo-encuesta:active {
+    transform: scale(0.97);
+}
+
+.subtexto-encuesta {
+    color: #ffffff;
+    background-color: rgba(0, 101, 86, 0.88);
+    border: 1px solid rgba(188, 149, 91, 0.65);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    user-select: none;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .encuesta-flotante-wrapper {
+        top: 78px;
+        bottom: auto;
+        right: 16px;
+        left: auto;
+    }
+
+    .circulo-encuesta {
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
+    }
+
+    .subtexto-encuesta {
+        font-size: 0.62rem;
+        padding: 2px 8px;
+        letter-spacing: 0.6px;
+    }
 }
