@@ -161,6 +161,7 @@ body {
 .hero-section { 
     position: relative; 
     height: 100vh; 
+    overflow: hidden;
     display: flex; 
     flex-direction: column; 
     justify-content: flex-end;
@@ -798,6 +799,7 @@ body.modal-abierto .btn-u3-next {
 
     .hero-section {
         justify-content: flex-end;
+        overflow: hidden;
         padding-top: 84px;
         padding-bottom: 148px;
     }
@@ -820,12 +822,12 @@ body.modal-abierto .btn-u3-next {
     }
 
     .controles-video-wrapper {
-        position: absolute !important;
-        top: 50% !important;
-        bottom: auto !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translate(-50%, -50%) !important;
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
         max-width: calc(100% - 32px);
         z-index: 10;
     }
