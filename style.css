@@ -1174,3 +1174,48 @@ body:has(.contenedor-catalogo) #videoFondoBlur {
     background-color: #004d40 !important;
     transform: scale(1.02) !important;
 }
+
+/* ======================================================== */
+/* TEXTO TRANSPARENTE EN PORTADA (HERO)                      */
+/* ======================================================== */
+.contenido-central .texto-transparente-h1 {
+    color: rgba(255, 255, 255, 0.68) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+    transition: color 0.3s ease;
+}
+
+.contenido-central .texto-transparente-p {
+    color: rgba(255, 255, 255, 0.62) !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35) !important;
+    transition: color 0.3s ease;
+}
+
+/* ======================================================== */
+/* SUBTEXTO DEBAJO DE BOTONES DE VIDEO                      */
+/* ======================================================== */
+.controles-video-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 30px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.controles-video-botones {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.subtexto-controles-video {
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+    user-select: none;
+    pointer-events: none;
+}
