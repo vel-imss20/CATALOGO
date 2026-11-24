@@ -797,19 +797,21 @@ body.modal-abierto .btn-u3-next {
     .nav-links.active { display: flex; }
 
     .hero-section {
-        padding-bottom: 120px;
+        justify-content: space-between;
+        padding-top: 76px;
+        padding-bottom: 165px;
     }
 
     .contenido-central {
         padding: 0 20px;
-        margin-bottom: 10px;
+        margin-bottom: 24px;
     }
 
     .contenido-central h1 {
         font-size: 1.75rem;
         line-height: 1.15;
         max-width: 100%;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
 
     .contenido-central p {
@@ -818,16 +820,15 @@ body.modal-abierto .btn-u3-next {
     }
 
     .controles-video-wrapper {
-        position: absolute;
-        bottom: 24px;
-        left: 50%;
+        position: sticky;
+        top: 78px;
+        bottom: auto;
+        left: auto;
         right: auto;
-        transform: translateX(-50%);
+        transform: none;
+        align-self: center;
         max-width: calc(100% - 32px);
-    }
-
-    .hero-section {
-        padding-bottom: 120px;
+        z-index: 10;
     }
 
     #contactos .grid-tarjetas { grid-template-columns: 1fr; }
